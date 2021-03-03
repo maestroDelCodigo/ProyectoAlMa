@@ -1,4 +1,5 @@
 using ApiEjemplo.Controllers;
+using ApiEjemplo.Features.Activities;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo

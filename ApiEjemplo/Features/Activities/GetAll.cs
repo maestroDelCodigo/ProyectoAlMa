@@ -11,14 +11,9 @@ namespace ApiEjemplo.Features.Activities
 {
     public class GetAll
     {
-        public class ListActivitiesRequest : IRequest<GetAll.ListActivitiesResponse>
+        public class ListActivitiesRequest : IRequest<ListActivitiesResponse>
         {
-            public bool IsSortingDescending { get; }
-
-            public ListActivitiesRequest(bool isSortingDescending)
-            {
-                IsSortingDescending = isSortingDescending;
-            }
+            public bool IsSortingDescending { get; set; }
         }
 
         public class ListActivitiesResponse : Collection<ActivityRead>

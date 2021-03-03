@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ApiEjemplo.Controllers
+namespace ApiEjemplo.Features.Activities
 {
-    public class Activity
+    public class ActivityRead
     {
         public int Id { get; set; }
         public DateTimeOffset StartDate { get; set; }

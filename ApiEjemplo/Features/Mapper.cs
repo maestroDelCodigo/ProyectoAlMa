@@ -1,4 +1,6 @@
-﻿namespace ApiEjemplo.Controllers
+﻿using ApiEjemplo.Features.Activities;
+
+namespace ApiEjemplo.Features
 {
     public static class Mapper
     {

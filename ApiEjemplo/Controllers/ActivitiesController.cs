@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System;
 using System.Threading.Tasks;
-using ApiEjemplo.Features;
 using ApiEjemplo.Features.Activities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -13,19 +10,17 @@ namespace ApiEjemplo.Controllers
     [Route("[controller]")]
     public class ActivitiesController : ControllerBase
     {
-        private readonly IActivitiesService service;
         private readonly IMediator mediator;
 
-        public ActivitiesController(IActivitiesService service, IMediator mediator)
+        public ActivitiesController(IMediator mediator)
         {
-            this.service = service;
             this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<GetAll.ListActivitiesResponse> Get(bool isSortingDescending)
+        public async Task<GetAll.ListActivitiesResponse> Get([FromQuery]GetAll.ListActivitiesRequest request)
         {
-            return await mediator.Send(new GetAll.ListActivitiesRequest(isSortingDescending));
+            return await mediator.Send(request);
         }
 
         [HttpPost]
@@ -37,22 +32,25 @@ namespace ApiEjemplo.Controllers
         [HttpGet("{id}")]
         public async Task<ActivityRead> Get(int id)
         {
-            var activity = await service.Get(id);
-            var dto = Mapper.Map(activity);
-
-            return dto;
+            return await mediator.Send(new Get.GetRequest { Id = id });
         }
 
-        [HttpPut("{id}")]
-        public async Task Update(int id, ActivityUpdate activity)
+        [HttpPut]
+        public async Task Update(Update.UpdateActivityRequest request)
         {
-            await service.Update(id, activity);
+            await mediator.Send(request);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task Delete(int id)
         {
-            await service.Delete(id);
+            await mediator.Send(new Delete.DeleteActivityRequest(){ Id = id });
         }
+    }
+
+    public class UpdateInfo
+    {
+        public DateTimeOffset FinishDate { get; set; }
+        public DateTimeOffset StartDate { get; set; }
     }
 }
