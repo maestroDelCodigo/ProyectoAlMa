@@ -9,13 +9,17 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using ApiEjemplo.Controllers;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo
 {
     public class Startup
     {
+        private const string ConnectionString = "Server=(localdb)\\MSSQLLocalDB;Database=Strava;Integrated Security=true";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -27,7 +31,8 @@ namespace ApiEjemplo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSingleton<IActivitiesService, ActivityService>();
+            services.AddScoped<IActivitiesService, ActivityService>();
+            services.AddDbContext<StravaContext>(builder => builder.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiEjemplo", Version = "v1" });

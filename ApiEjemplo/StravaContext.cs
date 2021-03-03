@@ -9,6 +9,6 @@ namespace ApiEjemplo
         {
         }
 
-        public DbSet<Activity> Activities { get; }
+        public DbSet<Activity> Activities { get; set; }
     }
 }
