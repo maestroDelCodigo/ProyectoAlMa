@@ -1,6 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using ApiEjemplo.Features;
+using ApiEjemplo.Features.Activities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiEjemplo.Controllers
@@ -10,17 +14,24 @@ namespace ApiEjemplo.Controllers
     public class ActivitiesController : ControllerBase
     {
         private readonly IActivitiesService service;
+        private readonly IMediator mediator;
 
-        public ActivitiesController(IActivitiesService service)
+        public ActivitiesController(IActivitiesService service, IMediator mediator)
         {
             this.service = service;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<List<ActivityRead>> Get()
+        public async Task<GetAll.ListActivitiesResponse> Get(bool isSortingDescending)
         {
-            var activities = await service.Get();
-            return activities.Select(Mapper.Map).ToList();
+            return await mediator.Send(new GetAll.ListActivitiesRequest(isSortingDescending));
+        }
+
+        [HttpPost]
+        public async Task<int> Create(Create.CreateActivityRequest request)
+        {
+            return await mediator.Send(request);
         }
 
         [HttpGet("{id}")]
@@ -32,13 +43,6 @@ namespace ApiEjemplo.Controllers
             return dto;
         }
 
-        [HttpPost]
-        public async Task<int> Create(ActivityCreate activity)
-        {
-            var createdId = await service.Create(activity);
-            return createdId;
-        }
-        
         [HttpPut("{id}")]
         public async Task Update(int id, ActivityUpdate activity)
         {

@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using ApiEjemplo.Controllers;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo
@@ -31,6 +32,7 @@ namespace ApiEjemplo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddMediatR(typeof(Startup).Assembly);
             services.AddScoped<IActivitiesService, ActivityService>();
             services.AddDbContext<StravaContext>(builder => builder.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
