@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ApiEjemplo.Controllers;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,10 +28,12 @@ namespace ApiEjemplo.Features.Activities
         public class Handler : IRequestHandler<ListActivitiesRequest, ListActivitiesResponse>
         {
             private readonly StravaContext context;
+            private readonly IConfigurationProvider provider;
 
-            public Handler(StravaContext context)
+            public Handler(StravaContext context, IConfigurationProvider provider)
             {
                 this.context = context;
+                this.provider = provider;
             }
 
             public async Task<ListActivitiesResponse> Handle(ListActivitiesRequest request, CancellationToken cancellationToken)
@@ -46,9 +50,10 @@ namespace ApiEjemplo.Features.Activities
                 }
 
                 var activities = await source
+                    .ProjectTo<ActivityRead>(provider)
                     .ToListAsync(cancellationToken);
 
-                return new ListActivitiesResponse(activities.Select(Mapper.Map));
+                return new ListActivitiesResponse(activities);
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,15 +17,19 @@ namespace ApiEjemplo.Features.Activities
         public class Handler : IRequestHandler<GetRequest, ActivityRead>
         {
             private readonly StravaContext context;
+            private readonly IConfigurationProvider provider;
 
-            public Handler(StravaContext context)
+            public Handler(StravaContext context, IConfigurationProvider provider)
             {
                 this.context = context;
+                this.provider = provider;
             }
 
-            public async Task<ActivityRead> Handle(GetRequest request, CancellationToken cancellationToken)
+            public Task<ActivityRead> Handle(GetRequest request, CancellationToken cancellationToken)
             {
-                return Mapper.Map(await context.Activities.FirstAsync(a => a.Id == request.Id, cancellationToken));
+                return context.Activities
+                    .ProjectTo<ActivityRead>(provider)
+                    .FirstAsync(a => a.Id == request.Id, cancellationToken);
             }
         }
     }

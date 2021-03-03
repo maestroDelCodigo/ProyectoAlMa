@@ -25,6 +25,7 @@ namespace ApiEjemplo
         {
             services.AddControllers();
             services.AddMediatR(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddDbContext<StravaContext>(builder => builder.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
             {
