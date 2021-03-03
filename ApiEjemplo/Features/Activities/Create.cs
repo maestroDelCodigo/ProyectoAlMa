@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using ApiEjemplo.Controllers;
@@ -14,19 +11,8 @@ namespace ApiEjemplo.Features.Activities
     {
         public class CreateActivityRequest : IRequest<int>
         {
-            public CreateActivityRequest()
-            {
-            }
-
             public DateTimeOffset StartDate { get; set; }
             public DateTimeOffset FinishDate { get; set; }
-        }
-
-        public class CreateActivityResponse : Collection<ActivityRead>
-        {
-            public CreateActivityResponse(IEnumerable<ActivityRead> items) : base(items.ToList())
-            {
-            }
         }
 
         public class Handler : IRequestHandler<CreateActivityRequest, int>
