@@ -2,7 +2,6 @@
 using ApiEjemplo.Features.Activities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ApiEjemplo.Controllers
 {
