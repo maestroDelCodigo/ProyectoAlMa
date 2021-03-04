@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using ApiEjemplo.Features.Activities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ApiEjemplo.Controllers
 {
@@ -46,11 +46,5 @@ namespace ApiEjemplo.Controllers
         {
             await mediator.Send(new Delete.DeleteActivityRequest(){ Id = id });
         }
-    }
-
-    public class UpdateInfo
-    {
-        public DateTimeOffset FinishDate { get; set; }
-        public DateTimeOffset StartDate { get; set; }
     }
 }

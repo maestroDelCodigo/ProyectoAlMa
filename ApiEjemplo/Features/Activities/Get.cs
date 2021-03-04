@@ -17,18 +17,18 @@ namespace ApiEjemplo.Features.Activities
         public class Handler : IRequestHandler<GetRequest, ActivityRead>
         {
             private readonly StravaContext context;
-            private readonly IConfigurationProvider provider;
+            private readonly IConfigurationProvider mappingConfig;
 
-            public Handler(StravaContext context, IConfigurationProvider provider)
+            public Handler(StravaContext context, IConfigurationProvider mappingConfig)
             {
                 this.context = context;
-                this.provider = provider;
+                this.mappingConfig = mappingConfig;
             }
 
             public Task<ActivityRead> Handle(GetRequest request, CancellationToken cancellationToken)
             {
                 return context.Activities
-                    .ProjectTo<ActivityRead>(provider)
+                    .ProjectTo<ActivityRead>(mappingConfig)
                     .FirstAsync(a => a.Id == request.Id, cancellationToken);
             }
         }

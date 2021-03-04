@@ -28,12 +28,12 @@ namespace ApiEjemplo.Features.Activities
         public class Handler : IRequestHandler<ListActivitiesRequest, ListActivitiesResponse>
         {
             private readonly StravaContext context;
-            private readonly IConfigurationProvider provider;
+            private readonly IConfigurationProvider mappingConfig;
 
-            public Handler(StravaContext context, IConfigurationProvider provider)
+            public Handler(StravaContext context, IConfigurationProvider mappingConfig)
             {
                 this.context = context;
-                this.provider = provider;
+                this.mappingConfig = mappingConfig;
             }
 
             public async Task<ListActivitiesResponse> Handle(ListActivitiesRequest request, CancellationToken cancellationToken)
@@ -50,7 +50,7 @@ namespace ApiEjemplo.Features.Activities
                 }
 
                 var activities = await source
-                    .ProjectTo<ActivityRead>(provider)
+                    .ProjectTo<ActivityRead>(mappingConfig)
                     .ToListAsync(cancellationToken);
 
                 return new ListActivitiesResponse(activities);
