@@ -1,17 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using ApiEjemplo.Controllers;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo
@@ -31,8 +24,9 @@ namespace ApiEjemplo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IActivitiesService, ActivityService>();
-            services.AddDbContext<StravaContext>(builder => builder.UseSqlServer(ConnectionString));
+            services.AddMediatR(typeof(Startup).Assembly);
+            services.AddAutoMapper(typeof(Startup).Assembly);
+            services.AddDbContext<BikingContext>(builder => builder.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiEjemplo", Version = "v1" });

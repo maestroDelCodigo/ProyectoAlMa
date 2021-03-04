@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using ApiEjemplo.Features.Activities;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ApiEjemplo.Controllers
@@ -9,46 +9,41 @@ namespace ApiEjemplo.Controllers
     [Route("[controller]")]
     public class ActivitiesController : ControllerBase
     {
-        private readonly IActivitiesService service;
+        private readonly IMediator mediator;
 
-        public ActivitiesController(IActivitiesService service)
+        public ActivitiesController(IMediator mediator)
         {
-            this.service = service;
+            this.mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<List<ActivityRead>> Get()
+        public async Task<GetAll.ListActivitiesResponse> Get([FromQuery]GetAll.ListActivitiesRequest request)
         {
-            var activities = await service.Get();
-            return activities.Select(Mapper.Map).ToList();
+            return await mediator.Send(request);
+        }
+
+        [HttpPost]
+        public async Task<int> Create(Create.CreateActivityRequest request)
+        {
+            return await mediator.Send(request);
         }
 
         [HttpGet("{id}")]
         public async Task<ActivityRead> Get(int id)
         {
-            var activity = await service.Get(id);
-            var dto = Mapper.Map(activity);
-
-            return dto;
+            return await mediator.Send(new Get.GetRequest { Id = id });
         }
 
-        [HttpPost]
-        public async Task<int> Create(ActivityCreate activity)
+        [HttpPut]
+        public async Task Update(Update.UpdateActivityRequest request)
         {
-            var createdId = await service.Create(activity);
-            return createdId;
-        }
-        
-        [HttpPut("{id}")]
-        public async Task Update(int id, ActivityUpdate activity)
-        {
-            await service.Update(id, activity);
+            await mediator.Send(request);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public async Task Delete(int id)
         {
-            await service.Delete(id);
+            await mediator.Send(new Delete.DeleteActivityRequest(){ Id = id });
         }
     }
 }
