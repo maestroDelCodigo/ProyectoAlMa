@@ -26,7 +26,7 @@ namespace ApiEjemplo
             services.AddControllers();
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup).Assembly);
-            services.AddDbContext<StravaContext>(builder => builder.UseSqlServer(ConnectionString));
+            services.AddDbContext<BikingContext>(builder => builder.UseSqlServer(ConnectionString));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ApiEjemplo", Version = "v1" });

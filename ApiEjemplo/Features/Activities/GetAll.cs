@@ -27,10 +27,10 @@ namespace ApiEjemplo.Features.Activities
 
         public class Handler : IRequestHandler<ListActivitiesRequest, ListActivitiesResponse>
         {
-            private readonly StravaContext context;
+            private readonly BikingContext context;
             private readonly IConfigurationProvider mappingConfig;
 
-            public Handler(StravaContext context, IConfigurationProvider mappingConfig)
+            public Handler(BikingContext context, IConfigurationProvider mappingConfig)
             {
                 this.context = context;
                 this.mappingConfig = mappingConfig;

@@ -17,9 +17,9 @@ namespace ApiEjemplo.Features.Activities
 
         public class Handler : AsyncRequestHandler<UpdateActivityRequest>
         {
-            private readonly StravaContext context;
+            private readonly BikingContext context;
 
-            public Handler(StravaContext context)
+            public Handler(BikingContext context)
             {
                 this.context = context;
             }
