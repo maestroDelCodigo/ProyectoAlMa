@@ -13,7 +13,9 @@ namespace ApiEjemplo.Features.Activities
 {
     public class GetAll
     {
+
         public class ListActivitiesRequest : IRequest<ListActivitiesResponse>
+
         {
             public bool IsSortingDescending { get; set; }
         }
@@ -25,7 +27,9 @@ namespace ApiEjemplo.Features.Activities
             }
         }
 
+
         public class Handler : IRequestHandler<ListActivitiesRequest, ListActivitiesResponse>
+
         {
             private readonly BikingContext context;
             private readonly IConfigurationProvider mappingConfig;
@@ -36,7 +40,9 @@ namespace ApiEjemplo.Features.Activities
                 this.mappingConfig = mappingConfig;
             }
 
+
             public async Task<ListActivitiesResponse> Handle(ListActivitiesRequest request, CancellationToken cancellationToken)
+
             {
                 var source = context.Activities.AsQueryable();
 

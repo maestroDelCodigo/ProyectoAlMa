@@ -12,5 +12,6 @@ namespace ApiEjemplo.Model
         public DateTimeOffset AddedOn { get; set; }
         public DateTimeOffset? RetiredOn { get; set; }
         public Bike Bike { get; set; }
+
     }
 }

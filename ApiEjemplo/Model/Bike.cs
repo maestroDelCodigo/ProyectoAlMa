@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace ApiEjemplo.Model
 {
@@ -19,4 +19,5 @@ namespace ApiEjemplo.Model
     // * User => *User*
     
     // OTRA MANERA
+
 }

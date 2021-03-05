@@ -8,6 +8,7 @@ namespace ApiEjemplo.Features.Activities
 {
     public class Update
     {
+
         public class UpdateActivityRequest : IRequest
         {
             public DateTimeOffset StartDate { get; set; }
@@ -16,6 +17,7 @@ namespace ApiEjemplo.Features.Activities
         }
 
         public class Handler : AsyncRequestHandler<UpdateActivityRequest>
+
         {
             private readonly BikingContext context;
 
@@ -23,6 +25,7 @@ namespace ApiEjemplo.Features.Activities
             {
                 this.context = context;
             }
+
 
             protected override async Task Handle(UpdateActivityRequest request, CancellationToken cancellationToken)
             {
@@ -32,5 +35,6 @@ namespace ApiEjemplo.Features.Activities
                 await context.SaveChangesAsync(cancellationToken);
             }
         }
+
     }
 }

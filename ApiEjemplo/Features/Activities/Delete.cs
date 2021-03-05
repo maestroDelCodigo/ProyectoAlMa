@@ -7,12 +7,16 @@ namespace ApiEjemplo.Features.Activities
 {
     public class Delete
     {
+
         public class DeleteActivityRequest : IRequest
+
         {
             public int Id { get; set; }
         }
 
+
         public class Handler : AsyncRequestHandler<DeleteActivityRequest>
+
         {
             private readonly BikingContext context;
 
@@ -21,7 +25,9 @@ namespace ApiEjemplo.Features.Activities
                 this.context = context;
             }
 
+
             protected override async Task Handle(DeleteActivityRequest request, CancellationToken cancellationToken)
+
             {
                 var activity = context.Activities.First(a => a.Id == request.Id);
                 context.Activities.Remove(activity);

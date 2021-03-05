@@ -1,7 +1,10 @@
-﻿using ApiEjemplo.Features.Activities;
+using ApiEjemplo.Features.Activities;
+using ApiEjemplo.Features.Bikes;
+using ApiEjemplo.Features.Users;
 using ApiEjemplo.Model;
 using AutoMapper;
-using GetAll = ApiEjemplo.Features.Bikes.GetAll;
+using GetAll = ApiEjemplo.Features.Users.GetAll;
+
 
 namespace ApiEjemplo
 {
@@ -10,7 +13,12 @@ namespace ApiEjemplo
         public MappingProfile()
         {
             CreateMap<Activity, ActivityRead>();
-            CreateMap<Component, GetAll.ComponentRead>();
+
+            CreateMap<Component, GetAllComponents.ComponentRead>();
+            CreateMap<CreateComponent.ComponentInfo, Component>();
+            CreateMap<User, GetAll.UserRead>();
+            CreateMap<Bike, GetAllBikes.BikeRead>();
+
         }
     }
 }

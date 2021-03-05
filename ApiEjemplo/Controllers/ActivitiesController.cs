@@ -17,13 +17,17 @@ namespace ApiEjemplo.Controllers
         }
 
         [HttpGet]
+
         public async Task<GetAll.ListActivitiesResponse> Get([FromQuery]GetAll.ListActivitiesRequest request)
+
         {
             return await mediator.Send(request);
         }
 
         [HttpPost]
+
         public async Task<int> Create(Create.CreateActivityRequest request)
+
         {
             return await mediator.Send(request);
         }
@@ -31,19 +35,23 @@ namespace ApiEjemplo.Controllers
         [HttpGet("{id}")]
         public async Task<ActivityRead> Get(int id)
         {
-            return await mediator.Send(new Get.GetRequest { Id = id });
+
+            return await mediator.Send(new Get.Query { Id = id });
         }
 
-        [HttpPut]
-        public async Task Update(Update.UpdateActivityRequest request)
+        [HttpPut("{id}")]
+        public async Task Update(int id, Update.ActivityInfo activityInfo)
         {
-            await mediator.Send(request);
+            await mediator.Send(new Update.Command { Id = id, ActivityInfo = activityInfo });
+
         }
 
         [HttpDelete]
         public async Task Delete(int id)
         {
+
             await mediator.Send(new Delete.DeleteActivityRequest(){ Id = id });
+
         }
     }
 }

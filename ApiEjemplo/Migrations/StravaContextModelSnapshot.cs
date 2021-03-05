@@ -127,26 +127,33 @@ namespace ApiEjemplo.Migrations
 
             modelBuilder.Entity("ApiEjemplo.Model.Bike", b =>
                 {
-                    b.HasOne("ApiEjemplo.Model.User", "User")
-                        .WithMany()
+
+                    b.HasOne("ApiEjemplo.Model.User", null)
+                        .WithMany("Bikes")
                         .HasForeignKey("UserId");
 
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiEjemplo.Model.Component", b =>
                 {
-                    b.HasOne("ApiEjemplo.Model.Bike", "Bike")
+
+                    b.HasOne("ApiEjemplo.Model.Bike", null)
                         .WithMany("Components")
                         .HasForeignKey("BikeId");
 
-                    b.Navigation("Bike");
                 });
 
             modelBuilder.Entity("ApiEjemplo.Model.Bike", b =>
                 {
                     b.Navigation("Components");
                 });
+
+
+            modelBuilder.Entity("ApiEjemplo.Model.User", b =>
+                {
+                    b.Navigation("Bikes");
+                });
+
 #pragma warning restore 612, 618
         }
     }
