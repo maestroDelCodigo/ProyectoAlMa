@@ -35,5 +35,10 @@ namespace ApiEjemplo.Controllers
             return await mediator.Send(new CreateBike.Request(userId, biketInfo));
 
         }
+        [HttpDelete("{userId}/{bikeId}")]
+        public async Task Delete(int userId, int bikeId)
+        {
+            await mediator.Send(new DeleteBike().Command { Id = bikeId });
+        }
     }
 }
