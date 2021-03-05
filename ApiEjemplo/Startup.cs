@@ -23,7 +23,11 @@ namespace ApiEjemplo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(o =>
+            {
+                o.JsonSerializerOptions.IgnoreNullValues = true;
+                o.JsonSerializerOptions.Converters.Add(new System.Text.Json.Serialization.JsonStringEnumConverter());
+            });
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup).Assembly);
             services.AddDbContext<BikingContext>(builder => builder.UseSqlServer(ConnectionString));
@@ -42,7 +46,7 @@ namespace ApiEjemplo
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiEjemplo v1"));
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

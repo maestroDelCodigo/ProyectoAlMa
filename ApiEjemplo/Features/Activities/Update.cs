@@ -11,7 +11,7 @@ namespace ApiEjemplo.Features.Activities
         public class Command : IRequest
         {
             public int Id { get; set; }
-            public Info Info { get; set; }
+            public ActivityInfo ActivityInfo { get; set; }
         }
 
         public class Handler : AsyncRequestHandler<Command>
@@ -26,13 +26,13 @@ namespace ApiEjemplo.Features.Activities
             protected override async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = context.Activities.First(a => a.Id == request.Id);
-                activity.FinishDate = request.Info.FinishDate;
-                activity.StartDate = request.Info.StartDate;
+                activity.FinishDate = request.ActivityInfo.FinishDate;
+                activity.StartDate = request.ActivityInfo.StartDate;
                 await context.SaveChangesAsync(cancellationToken);
             }
         }
 
-        public class Info
+        public class ActivityInfo
         {
             public DateTimeOffset StartDate { get; set; }
             public DateTimeOffset FinishDate { get; set; }

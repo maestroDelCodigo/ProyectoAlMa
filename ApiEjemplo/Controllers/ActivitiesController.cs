@@ -35,9 +35,9 @@ namespace ApiEjemplo.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task Update(int id, Update.Info info)
+        public async Task Update(int id, Update.ActivityInfo activityInfo)
         {
-            await mediator.Send(new Update.Command { Id = id, Info = info});
+            await mediator.Send(new Update.Command { Id = id, ActivityInfo = activityInfo });
         }
 
         [HttpDelete("{id}")]
