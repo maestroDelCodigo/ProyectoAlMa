@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ApiEjemplo.Features.Bikes;
 using MediatR;
@@ -18,7 +18,7 @@ namespace ApiEjemplo.Controllers
         }
 
         [HttpGet("{bikeId}/components")]
-        public async Task<Collection<GetAllComponents.ComponentRead>> GetComponent(int bikeId)
+        public async Task<ICollection<GetAllComponents.ComponentRead>> GetComponent(int bikeId)
         {
             return await mediator.Send(new GetAllComponents.GetAllComponentsRequest(bikeId));
         }

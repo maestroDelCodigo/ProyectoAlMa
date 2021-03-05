@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
@@ -13,7 +14,7 @@ namespace ApiEjemplo.Features.Bikes
 {
     public class GetAllComponents
     {
-        public class GetAllComponentsRequest : IRequest<Collection<ComponentRead>>
+        public class GetAllComponentsRequest : IRequest<ICollection<ComponentRead>>
         {
             public int BikeId { get; }
 
@@ -23,7 +24,7 @@ namespace ApiEjemplo.Features.Bikes
             }
         }
 
-        public class Handler : IRequestHandler<GetAllComponentsRequest, Collection<ComponentRead>>
+        public class Handler : IRequestHandler<GetAllComponentsRequest, ICollection<ComponentRead>>
         {
             private readonly BikingContext context;
             private readonly IConfigurationProvider mappingConfig;
@@ -34,7 +35,7 @@ namespace ApiEjemplo.Features.Bikes
                 this.mappingConfig = mappingConfig;
             }
 
-            public async Task<Collection<ComponentRead>> Handle(GetAllComponentsRequest request, CancellationToken cancellationToken)
+            public async Task<ICollection<ComponentRead>> Handle(GetAllComponentsRequest request, CancellationToken cancellationToken)
             {
                 var components = context.Bikes
                     .Where(x => x.Id == request.BikeId)

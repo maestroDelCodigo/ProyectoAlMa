@@ -2,6 +2,7 @@
 using ApiEjemplo.Features.Bikes;
 using ApiEjemplo.Model;
 using AutoMapper;
+using GetAll = ApiEjemplo.Features.Users.GetAll;
 
 namespace ApiEjemplo
 {
@@ -12,6 +13,7 @@ namespace ApiEjemplo
             CreateMap<Activity, ActivityRead>();
             CreateMap<Component, GetAllComponents.ComponentRead>();
             CreateMap<CreateComponent.ComponentInfo, Component>();
+            CreateMap<User, GetAll.UserRead>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -14,7 +15,19 @@ namespace ConsoleClient
         {
             var client = CreateClient();
             //await PrintComponents(client, 1);
-            await CreateComponents(client, 1);
+            //await CreateComponents(client, 1);
+            await PrintUsers(client);
+        }
+
+        private static async Task PrintUsers(IBikingService client)
+        {
+            var users = await client.GetUsers();
+            foreach (var user in users)
+            {
+                Console.WriteLine(user);
+            }
+
+            Console.ReadLine();
         }
 
         private static async Task PrintComponents(IBikingService client, int bikeId)
