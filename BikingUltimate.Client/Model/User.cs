@@ -1,6 +1,6 @@
-﻿namespace ConsoleClient.Model
+﻿namespace BikingUltimate.Client.Model
 {
-    internal class User
+    public class User
     {
         public string Username { get; set; }
         public int Id { get; set; }

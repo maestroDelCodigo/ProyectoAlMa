@@ -9,4 +9,8 @@
     <PackageReference Include="Refit" Version="6.0.24" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BikingUltimate.Client\BikingUltimate.Client.csproj" />
+  </ItemGroup>
+
 </Project>

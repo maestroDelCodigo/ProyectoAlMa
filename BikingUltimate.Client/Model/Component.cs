@@ -2,7 +2,7 @@
 
 namespace ConsoleClient.Model
 {
-    internal class ComponentInfo
+    public abstract class Component
     {
         public string Brand { get; set; }
         public string Model { get; set; }
@@ -11,5 +11,17 @@ namespace ConsoleClient.Model
         public ComponentType ComponentType { get; set; }
         public DateTimeOffset AddedOn { get; set; }
         public DateTimeOffset? RetiredOn { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $@"{nameof(Brand)}: {Brand}, 
+{nameof(Model)}: {Model}, 
+{nameof(Distance)}: {Distance}, 
+{nameof(Weight)}: {Weight}, 
+{nameof(ComponentType)}: {ComponentType}, 
+{nameof(AddedOn)}: {AddedOn}, 
+{nameof(RetiredOn)}: {RetiredOn}";
+        }
     }
 }

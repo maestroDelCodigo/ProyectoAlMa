@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using BikingUltimate.Client;
 using ConsoleClient.Model;
 using Refit;
 
@@ -13,7 +14,7 @@ namespace ConsoleClient
     {
         static async Task Main(string[] args)
         {
-            var client = CreateClient();
+            var client = BikingUltimateClient.Create();
             //await PrintComponents(client, 1);
             //await CreateComponents(client, 1);
             await PrintUsers(client);
@@ -58,26 +59,6 @@ namespace ConsoleClient
 
             Console.WriteLine($"Componente creado con el id {createdId}");
             Console.ReadLine();
-        }
-
-        private static IBikingService CreateClient()
-        {
-            var options = new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-                WriteIndented = true,
-            };
-
-            options.Converters.Add(new JsonStringEnumConverter());
-
-            var settings = new RefitSettings()
-            {
-                ContentSerializer = new SystemTextJsonContentSerializer(options)
-            };
-
-            var baseUrl = "https://localhost:44305";
-            var client = RestService.For<IBikingService>(baseUrl, settings);
-            return client;
         }
     }
 }

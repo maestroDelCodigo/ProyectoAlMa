@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BikingUltimate.Client.Model;
 using ConsoleClient.Model;
 using Refit;
 
-namespace ConsoleClient
+namespace BikingUltimate.Client
 {
-    internal interface IBikingService
+    public interface IBikingService
     {
         [Get("/Bikes/{bikeId}/components")]
         Task<ICollection<Component>> GetComponents(int bikeId);
