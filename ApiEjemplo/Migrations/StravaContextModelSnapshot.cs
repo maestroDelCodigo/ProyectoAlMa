@@ -136,11 +136,9 @@ namespace ApiEjemplo.Migrations
 
             modelBuilder.Entity("ApiEjemplo.Model.Component", b =>
                 {
-                    b.HasOne("ApiEjemplo.Model.Bike", "Bike")
+                    b.HasOne("ApiEjemplo.Model.Bike", null)
                         .WithMany("Components")
                         .HasForeignKey("BikeId");
-
-                    b.Navigation("Bike");
                 });
 
             modelBuilder.Entity("ApiEjemplo.Model.Bike", b =>

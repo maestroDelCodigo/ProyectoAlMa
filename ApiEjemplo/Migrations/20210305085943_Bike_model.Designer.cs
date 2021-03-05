@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiEjemplo.Migrations
 {
     [DbContext(typeof(BikingContext))]
-    [Migration("20210304115233_Bike_model")]
+    [Migration("20210305085943_Bike_model")]
     partial class Bike_model
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -138,11 +138,9 @@ namespace ApiEjemplo.Migrations
 
             modelBuilder.Entity("ApiEjemplo.Model.Component", b =>
                 {
-                    b.HasOne("ApiEjemplo.Model.Bike", "Bike")
+                    b.HasOne("ApiEjemplo.Model.Bike", null)
                         .WithMany("Components")
                         .HasForeignKey("BikeId");
-
-                    b.Navigation("Bike");
                 });
 
             modelBuilder.Entity("ApiEjemplo.Model.Bike", b =>
