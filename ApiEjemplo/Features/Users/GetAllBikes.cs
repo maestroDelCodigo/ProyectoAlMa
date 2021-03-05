@@ -13,7 +13,12 @@ namespace ApiEjemplo.Features.Users
     {
         public class Request : IRequest<ICollection<BikeRead>>
         {
-            public string Username { get; set; }
+            public Request(int userId)
+            {
+                UserId = userId;
+            }
+
+            public int UserId { get; }
         }
 
         public class Handler : IRequestHandler<Request, ICollection<BikeRead>>
@@ -29,20 +34,22 @@ namespace ApiEjemplo.Features.Users
 
             public async Task<ICollection<BikeRead>> Handle(Request request, CancellationToken cancellationToken)
             {
-                return await bikingContext.Users
-                    .Where(x => x.Username == request.Username)
+                var listAsync = await bikingContext.Users
+                    .Include(s => s.Bikes)
+                    .Where(x => x.Id == request.UserId)
                     .SelectMany(s => s.Bikes)
                     .ProjectTo<BikeRead>(mappingConfig)
                     .ToListAsync(cancellationToken);
+
+                return listAsync;
             }
         }
 
         public class BikeRead
         {
-            public string Username { get; set; }
-            public int Id { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
+            public string Brand { get; set; }
+            public double Distance { get; set; }
+            public string Model { get; set; }
         }
     }
 }
