@@ -9,17 +9,13 @@ namespace ApiEjemplo.Features.Activities
 {
     public class Create
     {
-
-        public class CreateActivityRequest : IRequest<int>
-
+        public class Command : IRequest<int>
         {
             public DateTimeOffset StartDate { get; set; }
             public DateTimeOffset FinishDate { get; set; }
         }
 
-
-        public class Handler : IRequestHandler<CreateActivityRequest, int>
-
+        public class Handler : IRequestHandler<Command, int>
         {
             private readonly BikingContext context;
 
@@ -28,9 +24,7 @@ namespace ApiEjemplo.Features.Activities
                 this.context = context;
             }
 
-
-            public async Task<int> Handle(CreateActivityRequest request, CancellationToken cancellationToken)
-
+            public async Task<int> Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = new Activity
                 {

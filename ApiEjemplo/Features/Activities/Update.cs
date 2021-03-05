@@ -8,16 +8,13 @@ namespace ApiEjemplo.Features.Activities
 {
     public class Update
     {
-
-        public class UpdateActivityRequest : IRequest
+        public class Command : IRequest
         {
-            public DateTimeOffset StartDate { get; set; }
-            public DateTimeOffset FinishDate { get; set; }
             public int Id { get; set; }
+            public ActivityInfo ActivityInfo { get; set; }
         }
 
-        public class Handler : AsyncRequestHandler<UpdateActivityRequest>
-
+        public class Handler : AsyncRequestHandler<Command>
         {
             private readonly BikingContext context;
 
@@ -26,15 +23,19 @@ namespace ApiEjemplo.Features.Activities
                 this.context = context;
             }
 
-
-            protected override async Task Handle(UpdateActivityRequest request, CancellationToken cancellationToken)
+            protected override async Task Handle(Command request, CancellationToken cancellationToken)
             {
                 var activity = context.Activities.First(a => a.Id == request.Id);
-                activity.FinishDate = request.FinishDate;
-                activity.StartDate = request.StartDate;
+                activity.FinishDate = request.ActivityInfo.FinishDate;
+                activity.StartDate = request.ActivityInfo.StartDate;
                 await context.SaveChangesAsync(cancellationToken);
             }
         }
 
+        public class ActivityInfo
+        {
+            public DateTimeOffset StartDate { get; set; }
+            public DateTimeOffset FinishDate { get; set; }
+        }
     }
 }
