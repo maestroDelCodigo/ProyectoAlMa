@@ -27,13 +27,11 @@ namespace ApiEjemplo.Features.Bikes
         public class Handler : IRequestHandler<Request, int>
         {
             private readonly BikingContext context;
-            private readonly IConfigurationProvider mappingConfig;
-            private IMapper mapper;
+            private readonly IMapper mapper;
 
             public Handler(BikingContext context, IConfigurationProvider mappingConfig)
             {
                 this.context = context;
-                this.mappingConfig = mappingConfig;
                 mapper = mappingConfig.CreateMapper();
             }
 
@@ -47,7 +45,7 @@ namespace ApiEjemplo.Features.Bikes
                 {
                     var component = mapper.Map<Component>(request.ComponentInfo);
                     bike.Components.Add(component);
-                    await context.SaveChangesAsync();
+                    await context.SaveChangesAsync(cancellationToken);
                     return component.Id;
                 }
                 else
