@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo.Features.Bikes
 {
-    public class GetAll
+    public class GetAllComponents
     {
         public class GetAllComponentsRequest : IRequest<Collection<ComponentRead>>
         {

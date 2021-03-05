@@ -18,9 +18,9 @@ namespace ApiEjemplo.Controllers
         }
 
         [HttpGet("{bikeId}/components")]
-        public async Task<Collection<GetAll.ComponentRead>> GetComponent(int bikeId)
+        public async Task<Collection<GetAllComponents.ComponentRead>> GetComponent(int bikeId)
         {
-            return await mediator.Send(new GetAll.GetAllComponentsRequest(bikeId));
+            return await mediator.Send(new GetAllComponents.GetAllComponentsRequest(bikeId));
         }
 
         [HttpPost("{bikeId}/components")]
