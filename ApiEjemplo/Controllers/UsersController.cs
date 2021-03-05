@@ -22,5 +22,11 @@ namespace ApiEjemplo.Controllers
         {
             return await mediator.Send(new GetAll.Request());
         }
+
+        [HttpGet("{userId}/bikes")]
+        public async Task<ICollection<GetAll.UserRead>> GetAllBikes()
+        {
+            return await mediator.Send(new GetAll.Request());
+        }
     }
 }

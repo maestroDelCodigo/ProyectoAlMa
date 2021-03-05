@@ -1,5 +1,6 @@
 ﻿using ApiEjemplo.Features.Activities;
 using ApiEjemplo.Features.Bikes;
+using ApiEjemplo.Features.Users;
 using ApiEjemplo.Model;
 using AutoMapper;
 using GetAll = ApiEjemplo.Features.Users.GetAll;
@@ -14,6 +15,7 @@ namespace ApiEjemplo
             CreateMap<Component, GetAllComponents.ComponentRead>();
             CreateMap<CreateComponent.ComponentInfo, Component>();
             CreateMap<User, GetAll.UserRead>();
+            CreateMap<Bike, GetAllBikes.BikeRead>();
         }
     }
 }

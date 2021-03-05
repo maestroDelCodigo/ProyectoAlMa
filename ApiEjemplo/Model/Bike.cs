@@ -7,7 +7,6 @@ namespace ApiEjemplo.Model
         public string Brand { get; set; }
         public double Distance { get; set; }
         public string Model { get; set; }
-        public User User { get; set; }
         public ICollection<Component> Components { get; set; }
     }
 }
