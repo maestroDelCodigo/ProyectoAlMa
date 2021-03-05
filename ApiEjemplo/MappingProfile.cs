@@ -18,6 +18,7 @@ namespace ApiEjemplo
             CreateMap<CreateComponent.ComponentInfo, Component>();
             CreateMap<User, GetAll.UserRead>();
             CreateMap<Bike, GetAllBikes.BikeRead>();
+            CreateMap<CreateBike.BikeInfo, Bike>();
 
         }
     }
