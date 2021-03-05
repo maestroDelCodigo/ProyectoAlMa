@@ -8,7 +8,7 @@ namespace ConsoleClient.Model
         public string Model { get; set; }
         public double Distance { get; set; }
         public double Weight { get; set; }
-        public string ComponentType { get; set; }
+        public ComponentType ComponentType { get; set; }
         public DateTimeOffset AddedOn { get; set; }
         public DateTimeOffset? RetiredOn { get; set; }
 
