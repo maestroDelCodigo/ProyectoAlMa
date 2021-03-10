@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using ApiEjemplo.Features.Activities;
 using ApiEjemplo.Features.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -18,9 +19,9 @@ namespace ApiEjemplo.Controllers
         }
 
         [HttpGet]
-        public async Task<ICollection<GetAll.UserRead>> GetAll()
+        public async Task<ICollection<GetAllUsers.UserRead>> GetAll()
         {
-            return await mediator.Send(new GetAll.Request());
+            return await mediator.Send(new GetAllUsers().Request());
         }
 
         [HttpGet("{userId}/bikes")]

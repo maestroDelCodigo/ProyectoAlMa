@@ -6,15 +6,15 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace ApiEjemplo.Features.Users
+namespace ApiEjemplo.Features.Products
 {
-    public class GetAll
+    public class GetAllProducts
     {
-        public class Request : IRequest<ICollection<UserRead>>
+        public class Request : IRequest<ICollection<ProductRead>>
         {
         }
 
-        public class Handler : IRequestHandler<Request, ICollection<UserRead>>
+        public class Handler : IRequestHandler<Request, ICollection<ProductRead>>
         {
             private readonly BikingContext bikingContext;
             private readonly IConfigurationProvider mappingConfig;
@@ -25,20 +25,19 @@ namespace ApiEjemplo.Features.Users
                 this.mappingConfig = mappingConfig;
             }
 
-            public async Task<ICollection<UserRead>> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<ICollection<ProductRead>> Handle(Request request, CancellationToken cancellationToken)
             {
-                return await bikingContext.Users
-                    .ProjectTo<UserRead>(mappingConfig)
+                return await bikingContext.Products
+                    .ProjectTo<ProductRead>(mappingConfig)
                     .ToListAsync(cancellationToken: cancellationToken);
             }
         }
-
-        public class UserRead
-        {
-            public string Username { get; set; }
-            public int Id { get; set; }
-            public string FirstName { get; set; }
-            public string LastName { get; set; }
-        }
+            public class ProductRead
+                {
+                    public string Name { get; set; }
+                    public double Price { get; set; }
+                    public int Discount { get; set; }
+                }
+       
     }
 }
