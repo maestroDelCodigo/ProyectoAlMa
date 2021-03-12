@@ -1,7 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
-
-namespace BikingUltimate.Wasm
+﻿namespace BikingUltimate.Wasm
 {
     public class Program
     {

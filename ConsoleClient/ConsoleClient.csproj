@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BikingUltimate.Client\BikingUltimate.Client.csproj" />
+    <ProjectReference Include="..\BikingUltimate.Client\PaymentSystem.Client.csproj" />
   </ItemGroup>
 
 </Project>

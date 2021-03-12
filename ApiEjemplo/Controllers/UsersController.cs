@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using ApiEjemplo.Features.Activities;
 using ApiEjemplo.Features.Users;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

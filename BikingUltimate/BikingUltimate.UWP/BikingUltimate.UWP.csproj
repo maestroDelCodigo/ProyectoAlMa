@@ -130,9 +130,9 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <ProjectReference Include="..\..\BikingUltimate.Client\BikingUltimate.Client.csproj">
+    <ProjectReference Include="..\..\BikingUltimate.Client\PaymentSystem.Client.csproj">
       <Project>{b4dffdca-5f66-4bc3-a92d-c49692a8c5f8}</Project>
-      <Name>BikingUltimate.Client</Name>
+      <Name>PaymentSystem.Client</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +153,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Properties\Default.rd.xml" />
   </ItemGroup>
-  <Import Project="..\BikingUltimate.Shared\BikingUltimate.Shared.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

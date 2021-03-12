@@ -2,11 +2,11 @@
 using System.Text.Json.Serialization;
 using Refit;
 
-namespace BikingUltimate.Client
+namespace PaymentSystem.Client
 {
-    public class BikingUltimateClient
+    public class PaymentSystemClient
     {
-        public static IBikingService Create()
+        public static IPaymentSystemService Create()
         {
             var options = new JsonSerializerOptions()
             {
@@ -22,7 +22,7 @@ namespace BikingUltimate.Client
             };
 
             var baseUrl = "https://localhost:44305";
-            var client = RestService.For<IBikingService>(baseUrl, settings);
+            var client = RestService.For<IPaymentSystemService>(baseUrl, settings);
             return client;
         }
     }

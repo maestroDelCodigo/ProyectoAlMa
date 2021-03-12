@@ -89,12 +89,11 @@
     <AndroidResource Include="Resources\values\Styles.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\BikingUltimate.Client\BikingUltimate.Client.csproj">
+    <ProjectReference Include="..\..\BikingUltimate.Client\PaymentSystem.Client.csproj">
       <Project>{b4dffdca-5f66-4bc3-a92d-c49692a8c5f8}</Project>
-      <Name>BikingUltimate.Client</Name>
+      <Name>PaymentSystem.Client</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="..\BikingUltimate.Shared\BikingUltimate.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- This will force the generation of the APK when not building inside visual studio -->
   <Target Name="GenerateBuild" DependsOnTargets="SignAndroidPackage" AfterTargets="Build" Condition="'$(BuildingInsideVisualStudio)'==''" />

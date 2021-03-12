@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using ApiEjemplo.Controllers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MediatR;

@@ -13,5 +13,4 @@
   <ItemGroup>
     <UpToDateCheckInput Include="..\BikingUltimate.Shared\**\*.xaml" />
   </ItemGroup>
-  <Import Project="..\BikingUltimate.Shared\BikingUltimate.Shared.projitems" Label="Shared" />
 </Project>

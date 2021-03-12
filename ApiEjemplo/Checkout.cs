@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ApiEjemplo.Controllers;
-using ApiEjemplo.Model;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-
-namespace ApiEjemplo
+﻿namespace ApiEjemplo
 {
     public class Checkout
     {

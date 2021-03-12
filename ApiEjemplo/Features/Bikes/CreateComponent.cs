@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using ApiEjemplo.Model;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
