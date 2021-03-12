@@ -16,5 +16,11 @@ namespace BikingUltimate.Client
 
         [Get("/Users")]
         Task<ICollection<User>> GetUsers();
+
+        [Get("/Products")]
+        Task<ICollection<Product>> GetProducts();
+
+        [Get("/Products/{productId}")]
+        Task GetProduct(int productId);
     }
 }

@@ -21,7 +21,7 @@ namespace ApiEjemplo.Controllers
         [HttpGet]
         public async Task<ICollection<GetAllUsers.UserRead>> GetAll()
         {
-            return await mediator.Send(new GetAllUsers().Request());
+            return await mediator.Send(new GetAllUsers.Request());
         }
 
         [HttpGet("{userId}/bikes")]

@@ -8,6 +8,8 @@ using MediatR;
 
 namespace ApiEjemplo.Controllers
 {
+    [ApiController]
+    [Route("[controller]")]
     public class ProductsController : Controller
     {
         private readonly IMediator mediator;
@@ -19,7 +21,12 @@ namespace ApiEjemplo.Controllers
         [HttpGet]
         public async Task<ICollection<GetAllProducts.ProductRead>> GetAll()
         {
-            return await mediator.Send(new GetAllProducts().Request());
+            return await mediator.Send(new GetAllProducts.Request());
         }
+        //[HttpGet (template:"{productId)")]
+        //public async Task<ICollection<GetAllProducts.ProductRead>> GetProduct(int productId)
+        //{
+        //    return await mediator.Send(new GetProduct.Request(productId));
+        //}
     }
 }

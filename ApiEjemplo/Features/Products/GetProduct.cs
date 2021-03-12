@@ -9,10 +9,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ApiEjemplo.Features.Products
 {
-    public class GetAllProducts
+    public class GetProduct
     {
         public class Request : IRequest<ICollection<ProductRead>>
         {
+            public Request(int productId)
+            {
+                ProductId = productId;
+            }
+
+            public int ProductId { get; }
         }
 
         public class Handler : IRequestHandler<Request, ICollection<ProductRead>>
@@ -35,10 +41,10 @@ namespace ApiEjemplo.Features.Products
         }
             public class ProductRead
             {
-                public int Id { get; set; }
+                public int ProductId { get; set; }
                 public string Name { get; set; }
                 public double Price { get; set; }
-                public ICollection<Discount> Discount { get; set; }
+                
             }
        
     }
